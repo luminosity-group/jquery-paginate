@@ -19,10 +19,8 @@
 
                 /* Selectors */
                 content:    '.page_content',
-                navigation: '.page_navigation',
-                
-                items_per_page: 10,
-                abort_on_small_lists: false
+                navigation: '.page_navigation'
+
             };
 
             /* Merge options with defaults */
@@ -32,6 +30,7 @@
             var content = $(settings.content, container);
             var items = content.children();
 
+            console.log(items);
 
         });
     }
