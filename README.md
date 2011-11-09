@@ -39,11 +39,11 @@ Options
 -------
 
 ###Labels
-**first_label**: The label to use for the "First" link. Defaults to "First".  
-**last_label**: The label to use for the "Last" link. Defaults to "Last".  
-**prev_label**: The label to use for the "Previous" link. Defaults to "Previous".  
-**next_label**: The label to use for the "Next" link. Defaults to "Next".  
-**ellipse_label**: The label to use when there are more pages than can be displayed. Defaults to "...".
+**first\_label**: The label to use for the "First" link. Defaults to "First".  
+**last\_label**: The label to use for the "Last" link. Defaults to "Last".  
+**prev\_label**: The label to use for the "Previous" link. Defaults to "Previous".  
+**next\_label**: The label to use for the "Next" link. Defaults to "Next".  
+**ellipse\_label**: The label to use when there are more pages than can be displayed. Defaults to "...".
 
 	$(function() {
 		$('.paginate').paginate({
@@ -57,11 +57,11 @@ Options
 
 You could also disabled to labels completely.
 
-**show_first**: If set to false, the "First" link will not be rendered. Defaults to true.  
-**show_last**: If set to false, the "Last" link will not be rendered. Defaults to true.  
-**show_prev**: If set to false, the "Previous" link will not be rendered. Defaults to true.  
-**show_next**: If set to false, the "Next" link will not be rendered. Defaults to true.  
-**show_ellipse**: If set to false, the "..." link will not be rendered. Defaults to true.  
+**show\_first**: If set to false, the "First" link will not be rendered. Defaults to true.  
+**show\_last**: If set to false, the "Last" link will not be rendered. Defaults to true.  
+**show\_prev**: If set to false, the "Previous" link will not be rendered. Defaults to true.  
+**show\_next**: If set to false, the "Next" link will not be rendered. Defaults to true.  
+**show\_ellipse**: If set to false, the "..." link will not be rendered. Defaults to true.  
 
 * * *
 ###Selectors
@@ -69,6 +69,6 @@ You could also disabled to labels completely.
 **navigation**: A jQuery selector to select the page navigation container. Defaults to '.page_navigation'.
 * * *
 ###Settings
-**items_per_page**: The number of items per page to display. Defaults to 5.  
-**abort_on_small_lists**: If set to true and items_per_page is less than the total number of items, the plugin will not paginate the elements. Defaults to false.  
-**num_page_links**: The number of page links to show in the page navigation area. Defaults to 5. Using an odd number will generally look better.  
+**items\_per\_page**: The number of items per page to display. Defaults to 5.  
+**abort\_on\_small\_lists**: If set to true and items_per_page is less than the total number of items, the plugin will not paginate the elements. Defaults to false.  
+**num\_page\_links**: The number of page links to show in the page navigation area. Defaults to 5. Using an odd number will generally look better.  
