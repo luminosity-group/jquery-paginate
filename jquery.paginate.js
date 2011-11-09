@@ -16,6 +16,7 @@
                 prev_label:     'Previous',
                 next_label:     'Next',
                 last_label:     'Last',
+                ellipse_label:  '...',
 
                 /* Selectors */
                 content:    '.page_content',
@@ -67,6 +68,23 @@
                 $('.page_link', navigation_container).each(function() {
                     if ($(this).data('page') == page && !$(this).hasClass('first') && !$(this).hasClass('last')) {
                         $(this).addClass('active');
+                        if (page < settings.num_page_links) {
+                            start = 0;
+                            end = settings.num_page_links;
+                            $('.ellipse.less', navigation_container).hide();
+                        } else if (page > (total_pages - settings.num_page_links)) {
+                            start = total_pages - settings.num_page_links;
+                            end = total_pages;
+                            $('.ellipse.more', navigation_container).hide();
+                        } else {
+                            start = page - (settings.num_page_links / 2);
+                            end = page + (settings.num_page_links / 2);
+                            $('.ellipse.less', navigation_container).show();
+                            $('.ellipse.more', navigation_container).show();
+                        }
+                        
+                        $('.page_link:not(.first, .last, .prev, .next)', navigation_container).hide()
+                        $('.page_link:not(.first, .last, .prev, .next)', navigation_container).slice(start, end).show();
                     }
                 });
             }
@@ -79,10 +97,16 @@
 
                 if (settings.show_prev)
                     navigation_container.append($('<span class="page_link prev"><a href="#">' + settings.prev_label + '</a></span>'));
+                    
+                if (settings.show_ellipse)
+                    navigation_container.append($('<span class="ellipse less">' + settings.ellipse_label + '</span>'));
 
                 for (i = 1; i <= total_pages; i++) {
                     navigation_container.append($('<span class="page_link"><a href="#">' + i + '</a></span>').data('page', i));
                 }
+                
+                if (settings.show_ellipse)
+                    navigation_container.append($('<span class="ellipse more">' + settings.ellipse_label + '</span>'));
 
                 if (settings.show_prev)
                     navigation_container.append($('<span class="page_link next"><a href="#">' + settings.next_label + '</a></span>'));
