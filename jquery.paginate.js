@@ -26,10 +26,10 @@
                 abort_on_small_lists: false,
                 num_page_links: 5,
 
-                show_first: true,
-                show_last:  true,
-                show_next:  true,
-                show_prev:  true,
+                show_first:   true,
+                show_last:    true,
+                show_next:    true,
+                show_prev:    true,
                 show_ellipse: true
             };
 
@@ -65,14 +65,18 @@
                 $(current).show();
 
                 $('.page_link', navigation_container).removeClass('active');
+                
+                /* Loop through the page links and find the current page */
                 $('.page_link', navigation_container).each(function() {
                     if ($(this).data('page') == page && !$(this).hasClass('first') && !$(this).hasClass('last')) {
                         $(this).addClass('active');
-                        if (page < settings.num_page_links) {
+                        
+                        /* This could probably be done more elegantly, but hey...it works */
+                        if (page < ((settings.num_page_links / 2) + 1)) {
                             start = 0;
                             end = settings.num_page_links;
                             $('.ellipse.less', navigation_container).hide();
-                        } else if (page > (total_pages - settings.num_page_links)) {
+                        } else if (page > (total_pages - (settings.num_page_links / 2))) {
                             start = total_pages - settings.num_page_links;
                             end = total_pages;
                             $('.ellipse.more', navigation_container).hide();
