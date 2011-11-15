@@ -53,10 +53,10 @@
             build_nav();
 
             /* Goto first page */
-            gotoPage(1);
+            goto_page(1);
 
             /* Goes to page number page */
-            function gotoPage(page) {
+            function goto_page(page) {
                 var start = settings.items_per_page * (page - 1);
                 var end = start + settings.items_per_page;
                 var current = $(items).slice(start, end);
@@ -120,21 +120,21 @@
 
                 $('.page_link:not(.next, .prev)', navigation_container).click(function() {
                     var page = $(this).data('page');
-                    gotoPage(page);
+                    goto_page(page);
                     return false;
                 });
 
                 $('.page_link.next', navigation_container).click(function() {
                     var current_page = $('.page_link.active', navigation_container).data('page');
                     if (current_page < total_pages)
-                        gotoPage(current_page + 1);
+                        goto_page(current_page + 1);
                     return false;
                 });
 
                 $('.page_link.prev', navigation_container).click(function() {
                     var current_page = $('.page_link.active', navigation_container).data('page');
                     if (current_page > 1)
-                        gotoPage(current_page - 1);
+                        goto_page(current_page - 1);
                     return false;
                 });
             }
