@@ -5,35 +5,39 @@ This is a highly configurable jQuery plugin for paginating items and lists with 
 Default Usage
 -------------
 
-	$(function() {
-		$('.paginate').paginate();
-	});
-	
-	<div class="paginate">
-		<ul class="page_content">
-			<li>Item 1</li>
-			<li>Item 2</li>
-			<li>Item 3</li>
-			<li>Item 4</li>
-			<li>Item 5</li>
-			<li>Item 6</li>
-		</ul>
-		<div class="page_navigation"></div>
-	</div>
+```html
+$(function() {
+    $('.paginate').paginate();
+});
+
+<div class="paginate">
+    <ul class="page_content">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+        <li>Item 6</li>
+    </ul>
+    <div class="page_navigation"></div>
+</div>
+```
 
 The plugin will generate pagination buttons, within the .page_navigation element, in the following format:
 
-	<div class="page_navigation">
-		<span class="page_link first"><a href="#">First</a></span>
-		<span class="page_link prev"><a href="#">Previous</a></span>
-		<span class="ellipse less">...</span>
-		<span class="page_link active"><a href="#">1</a></span>
-		<span class="page_link"><a href="#">2</a></span>
-		<span class="page_link"><a href="#">3</a></span>
-		<span class="ellipse more">...</span>
-		<span class="page_link next"><a href="#">Next</a></span>
-		<span class="page_link last"><a href="#">Last</a></span>
-	</div>
+```html
+<div class="page_navigation">
+    <span class="page_link first"><a href="#">First</a></span>
+    <span class="page_link prev"><a href="#">Previous</a></span>
+    <span class="ellipse less">...</span>
+    <span class="page_link active"><a href="#">1</a></span>
+    <span class="page_link"><a href="#">2</a></span>
+    <span class="page_link"><a href="#">3</a></span>
+    <span class="ellipse more">...</span>
+    <span class="page_link next"><a href="#">Next</a></span>
+    <span class="page_link last"><a href="#">Last</a></span>
+</div>
+```
 
 Options
 -------
