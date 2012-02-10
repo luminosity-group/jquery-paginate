@@ -76,7 +76,7 @@ You could also disabled to labels completely.
 **abort\_on\_small\_lists**: If set to true and items\_per\_page is less than the total number of items, the plugin will not paginate the elements. Defaults to false.  
 **num\_page\_links**: The number of page links to show in the page navigation area. Defaults to 5. Using an odd number will generally look better.  
 
-### Running The Tests
+## Running The Tests
 To run the specs with selenium and firefox:
 
 ```bash
