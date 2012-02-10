@@ -4,9 +4,11 @@ This is a highly configurable jQuery plugin for paginating items and lists with 
 ## Default Usage
 
 ```html
-$(function() {
-    $('.paginate').paginate();
-});
+<script>
+    $(function() {
+        $('.paginate').paginate();
+    });
+</script>
 
 <div class="paginate">
     <ul class="page_content">
