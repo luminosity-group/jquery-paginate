@@ -1,9 +1,7 @@
-jQuery Pagination Plugin
-=====================
+# jQuery Pagination Plugin
 This is a highly configurable jQuery plugin for paginating items and lists with JavaScript.
 
-Default Usage
--------------
+## Default Usage
 
 ```html
 $(function() {
@@ -39,10 +37,9 @@ The plugin will generate pagination buttons, within the .page\_navigation elemen
 </div>
 ```
 
-Options
--------
+## Options
 
-###Labels
+### Labels
 **first\_label**: The label to use for the "First" link. Defaults to "First".  
 **last\_label**: The label to use for the "Last" link. Defaults to "Last".  
 **prev\_label**: The label to use for the "Previous" link. Defaults to "Previous".  
@@ -70,11 +67,18 @@ You could also disabled to labels completely.
 **show\_ellipse**: If set to false, the "..." link will not be rendered. Defaults to true.  
 
 * * *
-###Selectors
+### Selectors
 **content**: A jQuery selector to select the content within the containing element. Defaults to '.page\_content'.   
 **navigation**: A jQuery selector to select the page navigation container. Defaults to '.page\_navigation'.
 * * *
-###Settings
+### Settings
 **items\_per\_page**: The number of items per page to display. Defaults to 5.  
 **abort\_on\_small\_lists**: If set to true and items\_per\_page is less than the total number of items, the plugin will not paginate the elements. Defaults to false.  
 **num\_page\_links**: The number of page links to show in the page navigation area. Defaults to 5. Using an odd number will generally look better.  
+
+### Running The Tests
+To run the specs with selenium and firefox:
+
+```bash
+$ rake
+```
