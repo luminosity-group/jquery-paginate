@@ -28,6 +28,11 @@ describe('paginate', function() {
             expect(num_items).toEqual(2);
         });
 
+        it('hides the ellipses', function() {
+            expect($('.ellipse.less')).toBeHidden();
+            expect($('.ellipse.more')).toBeHidden();
+        });
+
         describe('clicking on the second page link', function() {
 
             it('shows the second page', function() {

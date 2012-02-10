@@ -65,32 +65,36 @@
                 $(current).show();
 
                 $('.page_link', navigation_container).removeClass('active');
-                
-                /* Loop through the page links and find the current page */
-                $('.page_link', navigation_container).each(function() {
-                    if ($(this).data('page') == page && !$(this).hasClass('first') && !$(this).hasClass('last')) {
-                        $(this).addClass('active');
-                        
-                        /* This could probably be done more elegantly, but hey...it works */
-                        if (page < ((settings.num_page_links / 2) + 1)) {
-                            start = 0;
-                            end = settings.num_page_links;
-                            $('.ellipse.less', navigation_container).hide();
-                        } else if (page > (total_pages - (settings.num_page_links / 2))) {
-                            start = total_pages - settings.num_page_links;
-                            end = total_pages;
-                            $('.ellipse.more', navigation_container).hide();
-                        } else {
-                            start = page - (settings.num_page_links / 2);
-                            end = page + (settings.num_page_links / 2);
-                            $('.ellipse.less', navigation_container).show();
-                            $('.ellipse.more', navigation_container).show();
-                        }
-                        
-                        $('.page_link:not(.first, .last, .prev, .next)', navigation_container).hide()
-                        $('.page_link:not(.first, .last, .prev, .next)', navigation_container).slice(start, end).show();
-                    }
-                });
+                $('.page_link[data-page="' + page + '"]', navigation_container).addClass('active');
+
+                var pages = $('.page_link[data-page]', navigation_container);
+                start = page - ((settings.num_page_links - 1) / 2) - 1;
+                end   = page + ((settings.num_page_links - 1) / 2);
+
+                if (end > pages.size()) {
+                    end = pages.size();
+                    start = pages.size() - settings.num_page_links;
+                }
+                if (start < 0) {
+                    start = 0;
+                    end = settings.num_page_links;
+                }
+                if (end > pages.size()) {
+                    end = pages.size();
+                }
+
+                $(pages).hide();
+                $(pages).slice(start, end).show()
+
+                $('.ellipse', navigation_container).hide();
+
+                if ($('.page_link[data-page]', navigation_container).first().css('display') == 'none') {
+                    $('.ellipse.less', navigation_container).show();
+                }
+
+                if ($('.page_link[data-page]', navigation_container).last().css('display') == 'none') {
+                    $('.ellipse.more', navigation_container).show();
+                }
             }
 
             /* Builds out the page buttons */
