@@ -84,3 +84,9 @@ To run the specs with selenium and firefox:
 ```bash
 $ rake
 ```
+
+To run the specs with headless webkit:
+
+```bash
+$ rake jasmine:headless
+```
