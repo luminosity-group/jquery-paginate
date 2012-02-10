@@ -106,7 +106,7 @@
                     navigation_container.append($('<span class="ellipse less">' + settings.ellipse_label + '</span>'));
 
                 for (i = 1; i <= total_pages; i++) {
-                    navigation_container.append($('<span class="page_link"><a href="#">' + i + '</a></span>').data('page', i));
+                    navigation_container.append($('<span class="page_link" data-page="' + i + '"><a href="#">' + i + '</a></span>').data('page', i));
                 }
                 
                 if (settings.show_ellipse)

@@ -23,16 +23,16 @@ $(function() {
 </div>
 ```
 
-The plugin will generate pagination buttons, within the .page_navigation element, in the following format:
+The plugin will generate pagination buttons, within the .page\_navigation element, in the following format:
 
 ```html
 <div class="page_navigation">
     <span class="page_link first"><a href="#">First</a></span>
     <span class="page_link prev"><a href="#">Previous</a></span>
     <span class="ellipse less">...</span>
-    <span class="page_link active"><a href="#">1</a></span>
-    <span class="page_link"><a href="#">2</a></span>
-    <span class="page_link"><a href="#">3</a></span>
+    <span class="page_link active" data-page="1"><a href="#">1</a></span>
+    <span class="page_link" data-page="2"><a href="#">2</a></span>
+    <span class="page_link" data-page="3"><a href="#">3</a></span>
     <span class="ellipse more">...</span>
     <span class="page_link next"><a href="#">Next</a></span>
     <span class="page_link last"><a href="#">Last</a></span>
@@ -49,15 +49,17 @@ Options
 **next\_label**: The label to use for the "Next" link. Defaults to "Next".  
 **ellipse\_label**: The label to use when there are more pages than can be displayed. Defaults to "...".
 
-	$(function() {
-		$('.paginate').paginate({
-			first_label: "<< First",
-			last_label: "Last >>",
-			prev_label: "< Prev",
-			next_label: "Next >"
-			ellipse_label: "more..."
-		});
-	});
+```javascript
+$(function() {
+    $('.paginate').paginate({
+        first_label: "<< First",
+        last_label: "Last >>",
+        prev_label: "< Prev",
+        next_label: "Next >"
+        ellipse_label: "more..."
+    });
+});
+```
 
 You could also disabled to labels completely.
 
@@ -69,10 +71,10 @@ You could also disabled to labels completely.
 
 * * *
 ###Selectors
-**content**: A jQuery selector to select the content within the containing element. Defaults to '.page_content'.   
-**navigation**: A jQuery selector to select the page navigation container. Defaults to '.page_navigation'.
+**content**: A jQuery selector to select the content within the containing element. Defaults to '.page\_content'.   
+**navigation**: A jQuery selector to select the page navigation container. Defaults to '.page\_navigation'.
 * * *
 ###Settings
 **items\_per\_page**: The number of items per page to display. Defaults to 5.  
-**abort\_on\_small\_lists**: If set to true and items_per_page is less than the total number of items, the plugin will not paginate the elements. Defaults to false.  
+**abort\_on\_small\_lists**: If set to true and items\_per\_page is less than the total number of items, the plugin will not paginate the elements. Defaults to false.  
 **num\_page\_links**: The number of page links to show in the page navigation area. Defaults to 5. Using an odd number will generally look better.  
