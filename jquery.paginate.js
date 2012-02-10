@@ -1,7 +1,7 @@
 ;(function($) {
     /*
      * Simple jQuery pagination plugin
-     * Version 0.1.2
+     * Version 0.1.3
      *
      * Copyright (c) 2011 Luminosity Group
      */

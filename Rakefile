@@ -1,5 +1,9 @@
 task :default => 'jasmine:ci'
 
+task :minify do
+  sh %{ juicer merge -s --force -i jquery.paginate.js }
+end
+
 require 'jasmine-headless-webkit'
 
 Jasmine::Headless::Task.new('jasmine:headless') do |t|
