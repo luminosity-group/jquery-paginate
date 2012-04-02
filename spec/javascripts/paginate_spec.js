@@ -98,4 +98,24 @@ describe('paginate', function() {
         });
 
     });
+    describe('with uncontained navigation', function() {
+
+        beforeEach(function() {
+            loadFixtures('uncontained.html');
+            $('.paginate').paginate({
+                navigation: '#page_navigation',
+                contain_navigation: false
+            });
+        });
+
+        it('behaves normally', function() {
+            var num_visible = $('li:visible').length;
+            expect(num_visible).toEqual(5);
+
+            $('.page_link.last').click();
+            num_visible = $('li:visible').length;
+            expect(num_visible).toEqual(1);
+        });
+
+    });
 });
