@@ -1,7 +1,7 @@
 ;(function($) {
     /*
      * Simple jQuery pagination plugin
-     * Version 0.1.3
+     * Version 1.1.4
      *
      * Copyright (c) 2011 Luminosity Group
      */
@@ -21,6 +21,8 @@
                 /* Selectors */
                 content:    '.page_content',
                 navigation: '.page_navigation',
+
+                contain_navigation: true,
                 
                 items_per_page: 5,
                 abort_on_small_lists: false,
@@ -38,10 +40,13 @@
 
             var container = $(this);
             var content = $(settings.content, container);
-            var navigation_container = $(settings.navigation, container);
-            var items = content.children();
+            var items = $(content).children();
+            var navigation_container = settings.contain_navigation ? $(settings.navigation, container) : $(settings.navigation);
             var total = items.size();
             var total_pages = Math.ceil(total / settings.items_per_page);
+
+            /* Clear content in navigation container */
+            $(navigation_container).html('');
 
             /* If abort_on_small_lists is set to true and the number of items
              * is less than items_per_page, abort 
