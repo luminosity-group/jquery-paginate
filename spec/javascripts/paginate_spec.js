@@ -64,6 +64,19 @@ describe('paginate', function() {
         });
 
     });
+    describe('on a small list with abort_on_small_lists set to true', function() {
+        beforeEach(function(){
+            loadFixtures('small.html');
+            $('.paginate').paginate({
+                abort_on_small_lists: true,
+                items_per_page: 10
+            });
+        });
+
+        it('adds the .no-pagination class to the page container element', function() {
+            expect($('.paginate')).toHaveClass('no-pagination');
+        });
+    });
     describe('on large lists', function() {
 
         beforeEach(function() {

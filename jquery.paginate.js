@@ -51,8 +51,11 @@
             /* If abort_on_small_lists is set to true and the number of items
              * is less than items_per_page, abort 
              */
-            if (settings.abort_on_small_lists && (total <= settings.items_per_page))
+            container.removeClass('no-pagination');
+            if (settings.abort_on_small_lists && (total <= settings.items_per_page)) {
+                container.addClass('no-pagination')
                 return true;
+            }
 
             /* Build out the page buttons */
             build_nav();
