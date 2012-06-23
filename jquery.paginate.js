@@ -53,6 +53,7 @@
              */
             container.removeClass('no-pagination');
             if (settings.abort_on_small_lists && (total <= settings.items_per_page)) {
+                $(items).show();
                 container.addClass('no-pagination')
                 return true;
             }
