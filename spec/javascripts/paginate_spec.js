@@ -1,6 +1,5 @@
 describe('paginate', function() {
     describe('on a small list', function() {
-
         beforeEach(function(){
             loadFixtures('small.html');
             $('.paginate').paginate();
@@ -34,36 +33,30 @@ describe('paginate', function() {
         });
 
         describe('clicking on the second page link', function() {
-
             it('shows the second page', function() {
                 $('.page_link[data-page="2"]').click();
                 expect($('.page_link[data-page="2"]')).toHaveClass('active');
                 expect($('li:visible').length).toEqual(1);
             });
-
         });
 
         describe('clicking on the next link', function() {
-
             it('shows the second page', function() {
                 $('.page_link.next').click();
                 expect($('.page_link[data-page="2"]')).toHaveClass('active');
                 expect($('li:visible').length).toEqual(1);
             });
-
         });
 
         describe('clicking on the last link', function() {
-
             it('shows the second page', function() {
                 $('.page_link.last').click();
                 expect($('.page_link[data-page="2"]')).toHaveClass('active');
                 expect($('li:visible').length).toEqual(1);
             });
-
         });
-
     });
+
     describe('on a small list with abort_on_small_lists set to true', function() {
         beforeEach(function(){
             loadFixtures('small.html');
@@ -77,8 +70,8 @@ describe('paginate', function() {
             expect($('.paginate')).toHaveClass('no-pagination');
         });
     });
-    describe('on large lists', function() {
 
+    describe('on large lists', function() {
         beforeEach(function() {
             loadFixtures('large.html');
             $('.paginate').paginate();
@@ -93,26 +86,21 @@ describe('paginate', function() {
         });
 
         describe('clicking on the page 4 link', function() {
-
             it('shows the less ellipse', function() {
                 $('.page_link[data-page="4"]').click();
                 expect($('.ellipse.less')).toBeVisible();
             });
-
         });
 
         describe('clicking on the last link', function() {
-
             it('hides the more ellipse', function() {
                 $('.page_link.last').click();
                 expect($('.ellipse.more')).toBeHidden();
             });
-
         });
-
     });
-    describe('with uncontained navigation', function() {
 
+    describe('with uncontained navigation', function() {
         beforeEach(function() {
             loadFixtures('uncontained.html');
             $('.paginate').paginate({
@@ -129,6 +117,5 @@ describe('paginate', function() {
             num_visible = $('li:visible').length;
             expect(num_visible).toEqual(1);
         });
-
     });
 });
