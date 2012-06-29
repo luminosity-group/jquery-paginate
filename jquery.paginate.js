@@ -18,9 +18,8 @@
                 last_label:     'Last',
                 ellipse_label:  '...',
 
-                /* Push State*/
-                permalinks: true,
-                url_format: '/page/:page',
+                /* Push State */
+                pushstate: false,
 
                 /* Selectors */
                 content:    '.page_content',
@@ -115,8 +114,8 @@
                     $('.ellipse.more', navigation_container).show();
                 }
 
-                if (push_state_supported) {
-                    permalink(page);
+                if (push_state_supported && settings.pushstate) {
+                    push(page);
                 }
             }
 
@@ -166,12 +165,16 @@
                 });
             }
 
+            $(window).bind('popstate', function() {
+                var state = window.event.state;
+                if (state && state.page) {
+                    goto_page(state.page);
+                }
+            });
+
             /* Pushstate the page number */
-            function permalink(page) {
-                var path = root_path + settings.url_format.replace(':page', page);
-                path = path.replace(/\/\//, '/')
-                console.log(path);
-                window.history.pushState(null, null, path);
+            function push(page) {
+                window.history.pushState({page: page}, null, null);
             }
         });
     }
