@@ -1,4 +1,11 @@
 describe('paginate', function() {
+    resetPushState = function() {
+        window.history.pushState(null, null, '/');
+    }
+
+    beforeEach(resetPushState);
+    afterEach(resetPushState);
+
     describe('on a small list', function() {
         beforeEach(function(){
             loadFixtures('small.html');
@@ -116,6 +123,18 @@ describe('paginate', function() {
             $('.page_link.last').click();
             num_visible = $('li:visible').length;
             expect(num_visible).toEqual(1);
+        });
+    });
+
+    describe('push state', function() {
+        beforeEach(function() {
+            window.history.pushState(null, null, '/');
+            loadFixtures('small.html');
+            $('.paginate').paginate();
+        });
+
+        it('stores the page number', function() {
+            expect(window.location.pathname).toEqual('/page/1')
         });
     });
 });
