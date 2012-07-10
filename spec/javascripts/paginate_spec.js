@@ -124,7 +124,7 @@ describe('paginate', function() {
                 $('.paginate').paginate({pushstate: true});
             });
 
-            xit('pushes the state', function() {
+            it('pushes the state', function() {
                 //expect(window.event.state).toEqual({page: 1});
                 //window.history.back();
             });

@@ -74,7 +74,11 @@
             goto_page(1);
 
             /* Goes to page number page */
-            function goto_page(page) {
+            function goto_page(page, record_state) {
+                if (record_state == undefined) {
+                    record_state = true;
+                }
+
                 var start = settings.items_per_page * (page - 1);
                 var end = start + settings.items_per_page;
                 var current = $(items).slice(start, end);
@@ -114,7 +118,7 @@
                     $('.ellipse.more', navigation_container).show();
                 }
 
-                if (push_state_supported && settings.pushstate) {
+                if (push_state_supported && record_state && settings.pushstate) {
                     push(page);
                 }
             }
@@ -168,7 +172,7 @@
             $(window).bind('popstate', function() {
                 var state = window.event.state;
                 if (state && state.page) {
-                    goto_page(state.page);
+                    goto_page(state.page, false);
                 }
             });
 
