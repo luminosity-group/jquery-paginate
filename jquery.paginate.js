@@ -1,7 +1,7 @@
 ;(function($) {
     /*
      * Simple jQuery pagination plugin
-     * Version 1.1.5
+     * Version 1.2.0
      *
      * Copyright (c) 2011 Luminosity Group
      */
@@ -17,6 +17,9 @@
                 next_label:     'Next',
                 last_label:     'Last',
                 ellipse_label:  '...',
+
+                /* Push State */
+                pushstate: false,
 
                 /* Selectors */
                 content:    '.page_content',
@@ -45,6 +48,12 @@
             var total = items.size();
             var total_pages = Math.ceil(total / settings.items_per_page);
 
+            /* Is push state supported? */
+            var push_state_supported =
+                window.history && window.history.pushState && window.history.replaceState
+                && !navigator.userAgent.match(/((iPod|iPhone|iPad).+\bOS\s+[1-4]|WebApps\/.+CFNetwork)/);
+            var root_path = window.location.pathname;
+
             /* Clear content in navigation container */
             $(navigation_container).html('');
 
@@ -53,6 +62,7 @@
              */
             container.removeClass('no-pagination');
             if (settings.abort_on_small_lists && (total <= settings.items_per_page)) {
+                $(items).show();
                 container.addClass('no-pagination')
                 return true;
             }
@@ -103,6 +113,10 @@
                 if ($('.page_link[data-page]', navigation_container).last().css('display') == 'none') {
                     $('.ellipse.more', navigation_container).show();
                 }
+
+                if (push_state_supported && settings.pushstate) {
+                    push(page);
+                }
             }
 
             /* Builds out the page buttons */
@@ -149,6 +163,18 @@
                         goto_page(current_page - 1);
                     return false;
                 });
+            }
+
+            $(window).bind('popstate', function() {
+                var state = window.event.state;
+                if (state && state.page) {
+                    goto_page(state.page);
+                }
+            });
+
+            /* Pushstate the page number */
+            function push(page) {
+                window.history.pushState({page: page}, null, null);
             }
         });
     }
