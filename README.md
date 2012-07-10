@@ -1,6 +1,10 @@
 # jQuery Pagination Plugin
 This is a highly configurable jQuery plugin for paginating items and lists with JavaScript.
 
+It also supports HTML5 pushstate, which means, when you navigate to a page then
+hit the back button, the page you were on will be restored automatically,
+sweet!
+
 ## Default Usage
 
 ```html

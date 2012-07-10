@@ -6,9 +6,9 @@ describe('paginate', function() {
         });
 
         it('shows the first 5 items by default', function() {
-            var num_visible = $('li:visible').length;
+            var num_visible = visibleItems().length;
             expect(num_visible).toEqual(5);
-            expect($($('li:visible')[num_visible - 1])).toHaveText('Item 5');
+            expect($(visibleItems()[num_visible - 1])).toHaveText('Item 5');
         });
 
         it('builds out the navigation', function() {
@@ -34,25 +34,25 @@ describe('paginate', function() {
 
         describe('clicking on the second page link', function() {
             it('shows the second page', function() {
-                $('.page_link[data-page="2"]').click();
-                expect($('.page_link[data-page="2"]')).toHaveClass('active');
-                expect($('li:visible').length).toEqual(1);
+                page(2).click();
+                expect(page(2)).toHaveClass('active');
+                expect(visibleItems().length).toEqual(1);
             });
         });
 
         describe('clicking on the next link', function() {
             it('shows the second page', function() {
                 $('.page_link.next').click();
-                expect($('.page_link[data-page="2"]')).toHaveClass('active');
-                expect($('li:visible').length).toEqual(1);
+                expect(page(2)).toHaveClass('active');
+                expect(visibleItems().length).toEqual(1);
             });
         });
 
         describe('clicking on the last link', function() {
             it('shows the second page', function() {
                 $('.page_link.last').click();
-                expect($('.page_link[data-page="2"]')).toHaveClass('active');
-                expect($('li:visible').length).toEqual(1);
+                expect(page(2)).toHaveClass('active');
+                expect(visibleItems().length).toEqual(1);
             });
         });
     });
@@ -87,7 +87,7 @@ describe('paginate', function() {
 
         describe('clicking on the page 4 link', function() {
             it('shows the less ellipse', function() {
-                $('.page_link[data-page="4"]').click();
+                $(page(4)).click();
                 expect($('.ellipse.less')).toBeVisible();
             });
         });
@@ -110,12 +110,24 @@ describe('paginate', function() {
         });
 
         it('behaves normally', function() {
-            var num_visible = $('li:visible').length;
-            expect(num_visible).toEqual(5);
+            expect(visibleItems().length).toEqual(5);
 
             $('.page_link.last').click();
-            num_visible = $('li:visible').length;
-            expect(num_visible).toEqual(1);
+            expect(visibleItems().length).toEqual(1);
+        });
+    });
+
+    describe('push state', function() {
+        describe('storing', function() {
+            beforeEach(function() {
+                loadFixtures('small.html');
+                $('.paginate').paginate({pushstate: true});
+            });
+
+            xit('pushes the state', function() {
+                //expect(window.event.state).toEqual({page: 1});
+                //window.history.back();
+            });
         });
     });
 });
