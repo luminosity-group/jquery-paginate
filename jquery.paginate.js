@@ -71,7 +71,7 @@
             build_nav();
 
             /* Goto first page */
-            goto_page(1);
+            goto_page(1, false);
 
             /* Goes to page number page */
             function goto_page(page, record_state) {
