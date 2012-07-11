@@ -73,6 +73,14 @@
             /* Goto first page */
             goto_page(1, false);
 
+            /* If push state is supported, go to that page */
+            if (push_state_supported) {
+                var state = window.history.state;
+                if (state && state.page) {
+                    goto_page(state.page, false);
+                }
+            }
+
             /* Goes to page number page */
             function goto_page(page, record_state) {
                 if (record_state == undefined) {
