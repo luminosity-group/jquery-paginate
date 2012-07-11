@@ -1,7 +1,7 @@
 ;(function($) {
     /*
      * Simple jQuery pagination plugin
-     * Version 1.2.1
+     * Version 1.2.2
      *
      * Copyright (c) 2011 Luminosity Group
      */
@@ -71,7 +71,15 @@
             build_nav();
 
             /* Goto first page */
-            goto_page(1);
+            goto_page(1, false);
+
+            /* If push state is supported, go to that page */
+            if (push_state_supported) {
+                var state = window.history.state;
+                if (state && state.page) {
+                    goto_page(state.page, false);
+                }
+            }
 
             /* Goes to page number page */
             function goto_page(page, record_state) {
