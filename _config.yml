@@ -1,0 +1,4 @@
+markdown: rdiscount
+pygments: true
+auto: true
+exclude: ['README.md', 'Gemfile.lock', 'Gemfile', 'Rakefile']

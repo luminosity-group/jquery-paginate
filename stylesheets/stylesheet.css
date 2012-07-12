@@ -477,3 +477,18 @@ footer a:hover {
 
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (max-width: 479px) {}
+
+/* Pagination */
+.page_content li {
+    background: #ffc;
+    padding: 5px;
+}
+
+.page_navigation span {
+    display: inline-block;
+    padding: 10px 5px;
+}
+
+.page_navigation span.active {
+    font-weight: bold;
+}

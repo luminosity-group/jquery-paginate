@@ -1,151 +1,97 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+---
+layout: default
+---
 
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <title>Jquery-paginate by luminosity-group</title>
-  </head>
-
-  <body>
-    <header>
-      <div class="inner">
-        <h1>Jquery-paginate</h1>
-        <h2>Super simple jQuery pagination plugin.</h2>
-        <a href="https://github.com/luminosity-group/jquery-paginate" class="button"><small>View project on</small>GitHub</a>
-      </div>
-    </header>
-
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h1>jQuery Pagination Plugin</h1>
+<h1>jQuery Pagination Plugin</h1>
 
 <p>This is a highly configurable jQuery plugin for paginating items and lists with JavaScript.</p>
 
 <p>It also supports HTML5 pushstate, which means, when you navigate to a page then
-hit the back button, the page you were on will be restored automatically,
-sweet!</p>
+    hit the back button, the page you were on will be restored automatically,
+    sweet!</p>
 
-<h2>Default Usage</h2>
+<h3>Basics</h3>
 
-<div class="highlight">
-<pre><span class="nt">&lt;script&gt;</span>
-    <span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nx">$</span><span class="p">(</span><span class="s1">'.paginate'</span><span class="p">).</span><span class="nx">paginate</span><span class="p">();</span>
-    <span class="p">});</span>
-<span class="nt">&lt;/script&gt;</span>
+{% highlight javascript %}
+$('.paginate').paginate();
+{% endhighlight %}
 
-<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"paginate"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"page_content"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;li&gt;</span>Item 1<span class="nt">&lt;/li&gt;</span>
-        <span class="nt">&lt;li&gt;</span>Item 2<span class="nt">&lt;/li&gt;</span>
-        <span class="nt">&lt;li&gt;</span>Item 3<span class="nt">&lt;/li&gt;</span>
-        <span class="nt">&lt;li&gt;</span>Item 4<span class="nt">&lt;/li&gt;</span>
-        <span class="nt">&lt;li&gt;</span>Item 5<span class="nt">&lt;/li&gt;</span>
-        <span class="nt">&lt;li&gt;</span>Item 6<span class="nt">&lt;/li&gt;</span>
-    <span class="nt">&lt;/ul&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"page_navigation"</span><span class="nt">&gt;&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-</pre>
+<script type="text/javascript">
+    $(function() {
+        $('.paginate1').paginate();
+    });
+</script>
+
+<div class="paginate1">
+    <ul class="page_content">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+        <li>Item 6</li>
+        <li>Item 7</li>
+        <li>Item 8</li>
+        <li>Item 9</li>
+        <li>Item 10</li>
+        <li>Item 11</li>
+        <li>Item 12</li>
+    </ul>
+    <div class="page_navigation"></div>
 </div>
 
+<h3>Advanced</h3>
 
-<p>The plugin will generate pagination buttons, within the .page_navigation element, in the following format:</p>
 
-<div class="highlight">
-<pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"page_navigation"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"page_link first"</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>First<span class="nt">&lt;/a&gt;&lt;/span&gt;</span>
-    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"page_link prev"</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Previous<span class="nt">&lt;/a&gt;&lt;/span&gt;</span>
-    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"ellipse less"</span><span class="nt">&gt;</span>...<span class="nt">&lt;/span&gt;</span>
-    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"page_link active"</span> <span class="na">data-page=</span><span class="s">"1"</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>1<span class="nt">&lt;/a&gt;&lt;/span&gt;</span>
-    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"page_link"</span> <span class="na">data-page=</span><span class="s">"2"</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>2<span class="nt">&lt;/a&gt;&lt;/span&gt;</span>
-    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"page_link"</span> <span class="na">data-page=</span><span class="s">"3"</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>3<span class="nt">&lt;/a&gt;&lt;/span&gt;</span>
-    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"ellipse more"</span><span class="nt">&gt;</span>...<span class="nt">&lt;/span&gt;</span>
-    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"page_link next"</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Next<span class="nt">&lt;/a&gt;&lt;/span&gt;</span>
-    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"page_link last"</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Last<span class="nt">&lt;/a&gt;&lt;/span&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-</pre>
+{% highlight javascript %}
+$('.paginate').paginate({
+    pushstate: true,
+    first_label: "<< First",
+    last_label: "Last >>",
+    prev_label: "< Prev",
+    next_label: "Next >",
+    ellipse_label: "more...",
+    events: {
+        afterPage: function(page) {
+            alert("Navigated to page " + page);
+            alert("Try using the back button!");
+        }
+    }
+});
+{% endhighlight %}
+
+<script type="text/javascript">
+    $(function() {
+        $('.paginate2').paginate({
+            pushstate: true,
+            first_label: "<< First",
+            last_label: "Last >>",
+            prev_label: "< Prev",
+            next_label: "Next >",
+            ellipse_label: "more...",
+            events: {
+                afterPage: function(page) {
+                    alert("Navigated to page " + page);
+                }
+            }
+        });
+    });
+</script>
+
+<div class="paginate2">
+    <ul class="page_content">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+        <li>Item 6</li>
+        <li>Item 7</li>
+        <li>Item 8</li>
+        <li>Item 9</li>
+        <li>Item 10</li>
+        <li>Item 11</li>
+        <li>Item 12</li>
+    </ul>
+    <div class="page_navigation"></div>
 </div>
-
-
-<h2>Options</h2>
-
-<h3>Labels</h3>
-
-<p><strong>first_label</strong>: The label to use for the "First" link. Defaults to "First".<br><strong>last_label</strong>: The label to use for the "Last" link. Defaults to "Last".<br><strong>prev_label</strong>: The label to use for the "Previous" link. Defaults to "Previous".<br><strong>next_label</strong>: The label to use for the "Next" link. Defaults to "Next".<br><strong>ellipse_label</strong>: The label to use when there are more pages than can be displayed. Defaults to "...".</p>
-
-<div class="highlight">
-<pre><span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">'.paginate'</span><span class="p">).</span><span class="nx">paginate</span><span class="p">({</span>
-        <span class="nx">first_label</span><span class="o">:</span> <span class="s2">"&lt;&lt; First"</span><span class="p">,</span>
-        <span class="nx">last_label</span><span class="o">:</span> <span class="s2">"Last &gt;&gt;"</span><span class="p">,</span>
-        <span class="nx">prev_label</span><span class="o">:</span> <span class="s2">"&lt; Prev"</span><span class="p">,</span>
-        <span class="nx">next_label</span><span class="o">:</span> <span class="s2">"Next &gt;"</span>
-        <span class="nx">ellipse_label</span><span class="o">:</span> <span class="s2">"more..."</span>
-    <span class="p">});</span>
-<span class="p">});</span>
-</pre>
-</div>
-
-
-<p>You could also disabled to labels completely.</p>
-
-<p><strong>show_first</strong>: If set to false, the "First" link will not be rendered. Defaults to true.<br><strong>show_last</strong>: If set to false, the "Last" link will not be rendered. Defaults to true.<br><strong>show_prev</strong>: If set to false, the "Previous" link will not be rendered. Defaults to true.<br><strong>show_next</strong>: If set to false, the "Next" link will not be rendered. Defaults to true.<br><strong>show_ellipse</strong>: If set to false, the "..." link will not be rendered. Defaults to true.  </p>
-
-<hr><h3>Selectors</h3>
-
-<p><strong>content</strong>: A jQuery selector to select the content within the containing element. Defaults to '.page_content'.<br><strong>navigation</strong>: A jQuery selector to select the page navigation container. Defaults to '.page_navigation'.</p>
-
-<hr><h3>Settings</h3>
-
-<p><strong>items_per_page</strong>: The number of items per page to display. Defaults to 5.<br><strong>abort_on_small_lists</strong>: If set to true and items_per_page is less than the total number of items, the plugin will not paginate the elements. Defaults to false.<br><strong>num_page_links</strong>: The number of page links to show in the page navigation area. Defaults to 5. Using an odd number will generally look better.  </p>
-
-<h2>Running The Tests</h2>
-
-<p>To run the specs with selenium and firefox:</p>
-
-<div class="highlight">
-<pre><span class="nv">$ </span>rake
-</pre>
-</div>
-
-
-<p>To run the specs with headless webkit:</p>
-
-<div class="highlight">
-<pre><span class="nv">$ </span>rake jasmine:headless
-</pre>
-</div>
-
-        </section>
-
-        <aside id="sidebar">
-          <a href="https://github.com/luminosity-group/jquery-paginate/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/luminosity-group/jquery-paginate/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
-
-          <p class="repo-owner"><a href="https://github.com/luminosity-group/jquery-paginate"></a> is maintained by <a href="https://github.com/luminosity-group">luminosity-group</a>.</p>
-
-          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
-    </div>
-
-  
-  </body>
-</html>
