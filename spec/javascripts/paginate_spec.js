@@ -124,9 +124,13 @@ describe('paginate', function() {
                 $('.paginate').paginate({pushstate: true});
             });
 
-            it('pushes the state', function() {
-                //expect(window.event.state).toEqual({page: 1});
-                //window.history.back();
+            it('pushes the state on page load', function() {
+                expect(window.history.state).toEqual({page: 1});
+            });
+
+            it('pushes the state when going to a page', function() {
+                $(page(2)).click();
+                expect(window.history.state).toEqual({page: 2});
             });
         });
     });
