@@ -71,7 +71,7 @@
             build_nav();
 
             /* If push state is supported, go to that page */
-            if (push_state_supported) {
+            if (push_state_supported && settings.pushstate) {
                 var state = window.history.state;
                 if (state && state.page) {
                     goto_page(state.page, false);
