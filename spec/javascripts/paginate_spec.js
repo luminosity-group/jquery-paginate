@@ -117,6 +117,32 @@ describe('paginate', function() {
         });
     });
 
+    describe('events', function() {
+        var called;
+
+        beforeEach(function() {
+            called = false;
+        });
+
+        describe('afterPage', function() {
+            beforeEach(function() {
+                loadFixtures('small.html');
+                $('.paginate').paginate({
+                    events: {
+                        afterPage: function(page) {
+                            called = true;
+                        }
+                    }
+                });
+            });
+
+            it('runs the callback', function() {
+                $(page(2)).click();
+                expect(called).toEqual(true)
+            });
+        });
+    });
+
     if (!navigator.userAgent.match(/.*PhantomJS.*/)) {
         describe('push state', function() {
             describe('storing', function() {

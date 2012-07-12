@@ -35,7 +35,12 @@
                 show_last:    true,
                 show_next:    true,
                 show_prev:    true,
-                show_ellipse: true
+                show_ellipse: true,
+
+                /* Events */
+                events: {
+                    afterPage: function() {}
+                }
             };
 
             /* Merge options with defaults */
@@ -131,6 +136,8 @@
                 if (push_state_supported && record_state && settings.pushstate) {
                     push(page);
                 }
+
+                settings.events.afterPage.call(this, page);
             }
 
             /* Builds out the page buttons */
