@@ -120,6 +120,7 @@ describe('paginate', function() {
     describe('push state', function() {
         describe('storing', function() {
             beforeEach(function() {
+                window.history.pushState(null, null, null);
                 loadFixtures('small.html');
                 $('.paginate').paginate({pushstate: true});
             });
