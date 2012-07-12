@@ -117,17 +117,62 @@ describe('paginate', function() {
         });
     });
 
-    describe('push state', function() {
-        describe('storing', function() {
+    describe('events', function() {
+        var called;
+
+        beforeEach(function() {
+            called = false;
+        });
+
+        describe('afterPage', function() {
             beforeEach(function() {
                 loadFixtures('small.html');
-                $('.paginate').paginate({pushstate: true});
+                $('.paginate').paginate({
+                    events: {
+                        afterPage: function(page) {
+                            called = true;
+                        }
+                    }
+                });
             });
 
-            it('pushes the state', function() {
-                //expect(window.event.state).toEqual({page: 1});
-                //window.history.back();
+            it('runs the callback', function() {
+                $(page(2)).click();
+                expect(called).toEqual(true)
             });
         });
     });
+
+    if (!navigator.userAgent.match(/.*PhantomJS.*/)) {
+        describe('push state', function() {
+            describe('storing', function() {
+                beforeEach(function() {
+                    window.history.pushState(null, null, null);
+                    loadFixtures('small.html');
+                    $('.paginate').paginate({pushstate: true});
+                });
+
+                it('pushes the state on page load', function() {
+                    expect(window.history.state).toEqual({page: 1});
+                });
+
+                it('pushes the state when going to a page', function() {
+                    $(page(2)).click();
+                    expect(window.history.state).toEqual({page: 2});
+                });
+            });
+
+            describe('restoring', function() {
+                beforeEach(function() {
+                    window.history.pushState({page: 2}, null, null);
+                    loadFixtures('small.html');
+                    $('.paginate').paginate({pushstate: true});
+                });
+
+                it('restores the state', function() {
+                    expect(page(2)).toHaveClass('active');
+                });
+            });
+        });
+    }
 });

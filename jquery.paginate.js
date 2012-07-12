@@ -1,7 +1,7 @@
 ;(function($) {
     /*
      * Simple jQuery pagination plugin
-     * Version 1.2.4
+     * Version 1.2.5
      *
      * Copyright (c) 2011 Luminosity Group
      */
@@ -35,7 +35,12 @@
                 show_last:    true,
                 show_next:    true,
                 show_prev:    true,
-                show_ellipse: true
+                show_ellipse: true,
+
+                /* Events */
+                events: {
+                    afterPage: function() {}
+                }
             };
 
             /* Merge options with defaults */
@@ -71,7 +76,7 @@
             build_nav();
 
             /* If push state is supported, go to that page */
-            if (push_state_supported) {
+            if (push_state_supported && settings.pushstate) {
                 var state = window.history.state;
                 if (state && state.page) {
                     goto_page(state.page, false);
@@ -131,6 +136,8 @@
                 if (push_state_supported && record_state && settings.pushstate) {
                     push(page);
                 }
+
+                settings.events.afterPage.call(this, page);
             }
 
             /* Builds out the page buttons */
@@ -190,7 +197,6 @@
             function push(page) {
                 var state = {page: page}
                 if (replace_state) {
-                    console.log("Replacing state");
                     window.history.replaceState(state, null, null);
                     replace_state = false;
                 } else {
