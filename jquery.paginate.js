@@ -1,7 +1,7 @@
 ;(function($) {
     /*
      * Simple jQuery pagination plugin
-     * Version 1.2.2
+     * Version 1.2.3
      *
      * Copyright (c) 2011 Luminosity Group
      */
@@ -52,7 +52,7 @@
             var push_state_supported =
                 window.history && window.history.pushState && window.history.replaceState
                 && !navigator.userAgent.match(/((iPod|iPhone|iPad).+\bOS\s+[1-4]|WebApps\/.+CFNetwork)/);
-            var root_path = window.location.pathname;
+            var replace_state = false;
 
             /* Clear content in navigation container */
             $(navigation_container).html('');
@@ -70,15 +70,17 @@
             /* Build out the page buttons */
             build_nav();
 
-            /* Goto first page */
-            goto_page(1, false);
-
             /* If push state is supported, go to that page */
             if (push_state_supported) {
                 var state = window.history.state;
                 if (state && state.page) {
                     goto_page(state.page, false);
+                } else {
+                    replace_state = true;
+                    goto_page(1);
                 }
+            } else {
+                goto_page(1, false);
             }
 
             /* Goes to page number page */
@@ -186,7 +188,14 @@
 
             /* Pushstate the page number */
             function push(page) {
-                window.history.pushState({page: page}, null, null);
+                var state = {page: page}
+                if (replace_state) {
+                    console.log("Replacing state");
+                    window.history.replaceState(state);
+                    replace_state = false;
+                } else {
+                    window.history.pushState(state);
+                }
             }
         });
     }
