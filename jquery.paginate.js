@@ -1,7 +1,7 @@
 ;(function($) {
     /*
      * Simple jQuery pagination plugin
-     * Version 1.2.3
+     * Version 1.2.4
      *
      * Copyright (c) 2011 Luminosity Group
      */
@@ -191,10 +191,10 @@
                 var state = {page: page}
                 if (replace_state) {
                     console.log("Replacing state");
-                    window.history.replaceState(state);
+                    window.history.replaceState(state, null, null);
                     replace_state = false;
                 } else {
-                    window.history.pushState(state);
+                    window.history.pushState(state, null, null);
                 }
             }
         });
