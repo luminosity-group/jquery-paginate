@@ -67,7 +67,7 @@
              */
             container.removeClass('no-pagination');
             if (settings.abort_on_small_lists && (total <= settings.items_per_page)) {
-                $(items).show();
+                $(items).css('display', '')
                 container.addClass('no-pagination')
                 return true;
             }
@@ -98,8 +98,8 @@
                 var end = start + settings.items_per_page;
                 var current = $(items).slice(start, end);
 
-                $(items).hide();
-                $(current).show();
+                $(items).css('display', 'none');
+                $(current).css('display', '');
 
                 $('.page_link', navigation_container).removeClass('active');
                 $('.page_link[data-page="' + page + '"]', navigation_container).addClass('active');
@@ -120,17 +120,17 @@
                     end = pages.size();
                 }
 
-                $(pages).hide();
-                $(pages).slice(start, end).show()
+                $(pages).css('display', 'none')
+                $(pages).slice(start, end).css('display', '')
 
-                $('.ellipse', navigation_container).hide();
+                $('.ellipse', navigation_container).css('display', 'none')
 
                 if ($('.page_link[data-page]', navigation_container).first().css('display') == 'none') {
-                    $('.ellipse.less', navigation_container).show();
+                    $('.ellipse.less', navigation_container).css('display', '')
                 }
 
                 if ($('.page_link[data-page]', navigation_container).last().css('display') == 'none') {
-                    $('.ellipse.more', navigation_container).show();
+                    $('.ellipse.more', navigation_container).css('display', '')
                 }
 
                 if (push_state_supported && record_state && settings.pushstate) {
